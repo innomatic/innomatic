@@ -1,9 +1,31 @@
 <?php
-
+/**
+ * Innomatic
+ *
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.
+ *
+ * @copyright  1999-2014 Innomatic Company
+ * @license    http://www.innomatic.io/license/ New BSD License
+ * @link       http://www.innomatic.io
+ */
 namespace Innomatic\Legacy;
 
+/**
+ * This class provides an interface to the legacy stack.
+ *  
+ * @author     Alex Pagnoni <alex.pagnoni@innomatic.io>
+ * @copyright  1999-2014 Innomatic Company
+ * @since      7.0.0 introduced
+ */
 class Core
 {
+    /**
+     * Legacy stack callback running state.
+     * @var boolean 
+     */
     protected $runningCallback = false;
 
     /**
@@ -15,13 +37,17 @@ class Core
      */
     public function runCallback(\Closure $callback)
     {
+        // Check if a legacy stack callback is already running.
         if ($this->runningCallback) {
             throw new RuntimeException('Started recursive callback in legacy kernel.');
         }
 
+        // Set the callback as running.
         $this->runningCallback = true;
 
+        // Change current directory to the legacy stack.
         $platformHome = getcwd();
+        // @todo Must get innomatic_legacy path from configuration.
         chdir($platformHome . '/innomatic_legacy');
 
         try {
@@ -38,17 +64,26 @@ class Core
                 ->getHome()
                 . 'innomatic/';
 
-            // Start Innomatic
+            // Start Innomatic.
             $innomatic->bootstrap($home, $home . 'core/conf/innomatic.ini');
+            
+            // Run the callback in the legacy core.
             $result = $innomatic->runCallback($callback);
         } catch (Exception $e) {
+            // Go back to the new platform home.
             chdir($platformHome);
+        
+            // Clean the callback running state.
             $this->runningCallback = false;
             throw $e;
         }
 
+        // Go back to the new platform home.
         chdir($platformHome);
+
+        // Clean the callback running state.
         $this->runningCallback = false;
+
         return $result;
     }
 }
