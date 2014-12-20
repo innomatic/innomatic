@@ -26,8 +26,8 @@ class Core
 
         try {
             // Start the legacy Root Container and the legacy autoloader.
-            require_once getcwd().'/innomatic_legacy/innomatic/core/classes/innomatic/core/RootContainer.php';
-            $rootContainer = Innomatic\Core\RootContainer::instance('\Innomatic\Core\RootContainer');
+            require_once getcwd().'/innomatic/core/classes/innomatic/core/RootContainer.php';
+            $rootContainer = \Innomatic\Core\RootContainer::instance('\Innomatic\Core\RootContainer');
 
             // Start the legacy Innomatic Container.
             $innomatic = \Innomatic\Core\InnomaticContainer::instance('\Innomatic\Core\InnomaticContainer');
