@@ -1,0 +1,21 @@
+{
+    "name": "innomatic/innomatic-core",
+    "description": "Innomatic Platform core files.",
+    "homepage": "http://www.innomatic.io",
+    "license": "New BSD",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Innomatic Team",
+            "homepage": "http://www.innomatic.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Innomatic\\": "src/"
+        }
+    }
+}
