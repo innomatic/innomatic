@@ -11,7 +11,7 @@
  * @license    http://www.innomatic.io/license/ New BSD License
  * @link       http://www.innomatic.io
  */
-namespace Innomatic\Legacy;
+namespace Innomatic\Core\MVC\Legacy;
 
 /**
  * This class provides an interface to the legacy stack.
@@ -20,7 +20,7 @@ namespace Innomatic\Legacy;
  * @copyright  1999-2014 Innomatic Company
  * @since      7.0.0 introduced
  */
-class Core
+class Kernel 
 {
     /**
      * Legacy stack callback running state.
@@ -84,6 +84,35 @@ class Core
         // Clean the callback running state.
         $this->runningCallback = false;
 
+        return $result;
+    }
+
+    public function run()
+    {
+        // Change current directory to the legacy stack.
+        $platformHome = getcwd();
+        // @todo Must get innomatic_legacy path from configuration.
+        chdir($platformHome . '/../innomatic_legacy/innomatic');
+            
+        // Saves webapp home.
+        $webAppHome = getcwd() . '/';
+        
+        // Start the legacy Root Container and the legacy autoloader.
+        require_once getcwd() . '/core/classes/innomatic/core/RootContainer.php';
+        $rootContainer = \Innomatic\Core\RootContainer::instance('\Innomatic\Core\RootContainer');
+        
+        // Starts the WebAppContainer.
+        $container = \Innomatic\Webapp\WebAppContainer::instance('\Innomatic\Webapp\WebAppContainer');
+        
+        ob_start();
+        // Starts the WebApp. This is where all the real stuff is done.
+        $container->startWebApp($webAppHome);
+        $result = ob_get_contents();
+        ob_end_clean();
+        
+        // Stops the Root Container so that the instance is marked as cleanly exited.
+        $rootContainer->stop();
+        chdir($platformHome);
         return $result;
     }
 }
