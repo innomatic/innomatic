@@ -25,7 +25,6 @@ class InnomaticCoreBundle extends Bundle
     {
         parent::build($container);
         $container->addCompilerPass(new ChainRoutingPass);
-        $container->addCompilerPass(new ChainConfigResolverPass);
     }
 
     public function getContainerExtension()
