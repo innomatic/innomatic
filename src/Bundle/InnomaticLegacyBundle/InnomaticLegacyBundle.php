@@ -11,7 +11,6 @@
  * @license    http://www.innomatic.io/license/ New BSD License
  * @link       http://www.innomatic.io
  */
-
 namespace Innomatic\Bundle\InnomaticLegacyBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
@@ -21,8 +20,7 @@ class InnomaticLegacyBundle extends Bundle
 {
     public function getContainerExtension()
     {
-        if ( !isset( $this->extension ) )
-        {
+        if (!isset($this->extension)) {
             $this->extension = new InnomaticLegacyExtension(
                 array()
             );
