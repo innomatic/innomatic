@@ -7,4 +7,4 @@ This repository does not contain all parts that make up the Innomatic Platform i
 Innomatic is an open source, community-driven project, and code contributions are simply done via github pull requests.
 
 ## Copyright & License
-Copyright Innomatic Company, for copyright and license details see provided LICENSE file.
+Copyright Innoteam Srl, for copyright and license details see provided LICENSE file.
