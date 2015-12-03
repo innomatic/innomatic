@@ -1,16 +1,12 @@
-parameters:
-    innomatic.config.resolver.chain.class: Innomatic\Bundle\InnomaticCoreBundle\DependencyInjection\Configuration\ChainConfigResolver
-    innomatic.chain_router.class: Innomatic\Core\MVC\Symfony\Routing\ChainRouter 
-
 services:
     innomatic.config.resolver.chain:
-        class: %innomatic.config.resolver.chain.class%
+        class: Innomatic\Bundle\InnomaticCoreBundle\DependencyInjection\Configuration\ChainConfigResolver
 
     innomatic.config.resolver:
         alias: innomatic.config.resolver.chain
 
     innomatic.chain_router:
-        class: %innomatic.chain_router.class%
+        class: Innomatic\Core\MVC\Symfony\Routing\ChainRouter
         arguments: [@?logger]
         calls:
             - [setContext, [@router.request_context]]
