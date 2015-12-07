@@ -2,7 +2,7 @@
     "name": "innomatic/innomatic-core",
     "description": "Innomatic Platform core files.",
     "homepage": "http://www.innomatic.io",
-    "license": "BSD-3-Clause",
+    "license": "GPL-2.0",
     "minimum-stability": "dev",
     "authors": [
         {
