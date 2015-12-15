@@ -2,7 +2,7 @@
     "name": "innomatic/innomatic",
     "description": "Innomatic Platform core files.",
     "homepage": "http://www.innomatic.io",
-    "license": "GPL-2.0",
+    "license": "MIT",
     "minimum-stability": "dev",
     "authors": [
         {
