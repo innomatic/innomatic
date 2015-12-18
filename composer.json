@@ -3,7 +3,6 @@
     "description": "Innomatic Platform core files.",
     "homepage": "http://www.innomatic.io",
     "license": "MIT",
-    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Innomatic Team",
